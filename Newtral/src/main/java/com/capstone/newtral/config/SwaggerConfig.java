@@ -36,7 +36,6 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("졸작을 잘해보자")
                 .description("Newtral 기능 구현 실험<br> "
-
                 )
                 .version("3.0")
                 .build();

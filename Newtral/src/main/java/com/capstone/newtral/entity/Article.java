@@ -3,10 +3,12 @@ package com.capstone.newtral.entity;
 import com.capstone.newtral.entity.ConnectionTable.CategoryTopic;
 import com.capstone.newtral.entity.ConnectionTable.TopicArticle;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +33,29 @@ public class Article {
     private String articleContent;
 
     @Column(name = "registration_time")
-    private String registrationTime;
+    private LocalDateTime registrationTime;
+
+    @Column(name = "edit_time")
+    private LocalDateTime editTime;
+
+    //builder 패턴
+    @Builder
+    private Article(String articleTitle, String articleCompany, String articleContent, LocalDateTime registrationTime, LocalDateTime editTime){
+        this.articleTitle=articleTitle;
+        this.articleCompany = articleCompany;
+        this.articleContent = articleContent;
+        this.registrationTime = registrationTime;
+        this.editTime = editTime;
+    }
+
+    //수정 관련
+    private void editArticle(String articleTitle, String articleCompany, String articleContent, LocalDateTime registrationTime, LocalDateTime editTime){
+        this.articleTitle=articleTitle;
+        this.articleCompany = articleCompany;
+        this.articleContent = articleContent;
+        this.registrationTime = registrationTime;
+        this.editTime = editTime;
+    }
 
     //매핑관계
     @OneToMany(mappedBy = "article")

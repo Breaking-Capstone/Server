@@ -1,8 +1,10 @@
 package com.capstone.newtral.entity.ConnectionTable;
 
+import com.capstone.newtral.common.Time;
 import com.capstone.newtral.entity.Category;
 import com.capstone.newtral.entity.Topic;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +15,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class CategoryTopic {
+public class CategoryTopic extends Time {
 
     //구성요소
     @Id
@@ -23,6 +25,12 @@ public class CategoryTopic {
 
     @Column(name = "category_topic_date")
     private LocalDateTime categoryTopicDate;
+
+    //builder 패턴
+    @Builder
+    private CategoryTopic(LocalDateTime categoryTopicDate){
+        categoryTopicDate = getCreatedAtDate();
+    }
 
 
     //매핑관계

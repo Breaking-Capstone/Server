@@ -3,6 +3,7 @@ package com.capstone.newtral.entity;
 import com.capstone.newtral.entity.ConnectionTable.CategoryTopic;
 import com.capstone.newtral.entity.ConnectionTable.TopicArticle;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -26,6 +27,19 @@ public class Topic {
 
     @Column(name="topic_description")
     private String topicDescription;
+
+    //builder 패턴
+    @Builder
+    public Topic(String topicName, String topicDescription){
+        this.topicName = topicName;
+        this.topicDescription = topicDescription;
+    }
+
+    //수정 관련
+    public void editTopic(String topicName, String topicDescription){
+        this.topicName = topicName;
+        this.topicDescription = topicDescription;
+    }
 
     //매핑관계
     @OneToMany(mappedBy = "topic")
